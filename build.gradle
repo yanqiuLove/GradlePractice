@@ -1,0 +1,32 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    //表示dependencies声明的依赖去哪些仓库找
+    repositories {
+        google()
+        jcenter()
+        
+    }
+    //gradle执行需要哪些依赖
+    //比如：Android Gradle Plugin 插件为我们打包 apk 包，就需要添加classpath 'com.android.tools.build:gradle:3.4.0'
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.5.2'
+        
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+//allprojects中的配置会对所有工程生效
+allprojects {
+    //工程中声明的dependencies去哪些仓库中找
+    repositories {
+        google()
+        jcenter()
+        
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
