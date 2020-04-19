@@ -46,15 +46,15 @@ android {
         debug {}
     }
 
-    //渠道Flavors
-    productFlavors {
-        HuaWei {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "HuaWei"]
-        }
-        XiaoMi {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "XiaoMi"]
-        }
-    }
+//    //渠道Flavors
+//    productFlavors {
+//        HuaWei {
+//            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "HuaWei"]
+//        }
+//        XiaoMi {
+//            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "XiaoMi"]
+//        }
+//    }
     //修改生成的apk名字及输出文件夹
     applicationVariants.all { variant ->
         variant.outputs.all { output ->
@@ -71,7 +71,7 @@ android {
                 //BUILD_PATH为服务器输出路径
                 outDirectory = output.outputFile.getParent()
                 //AutoBuildTest-v1.0.1-xiaomi-release.apk
-                newName = 'AutoBuildTest-v' + APP_VERSION + '-' + timeNow + '-' + variant.productFlavors[0].name + '-' + variant.buildType.name + '.apk'
+                newName = 'AutoBuildTest-v' + APP_VERSION + '-' + timeNow + '-' + variant.buildType.name + '.apk'
             } else {
                 //本机打包输出在本机路径
                 timeNow = getDate()
@@ -80,7 +80,7 @@ android {
                     newName = "AutoBuildTest-v${APP_VERSION}-debug.apk"
                 } else {
                     //AutoBuildTest-v1.0.1-xiaomi-release.apk
-                    newName = 'AutoBuildTest-v' + APP_VERSION + '-' + timeNow + '-' + variant.productFlavors[0].name + '-' + variant.buildType.name + '.apk'
+                    newName = 'AutoBuildTest-v' + APP_VERSION + '-' + timeNow + '-' + variant.buildType.name + '.apk'
                 }
             }
             outputFileName = newName
