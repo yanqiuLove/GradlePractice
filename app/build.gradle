@@ -48,10 +48,10 @@ android {
 
     //渠道Flavors
     productFlavors {
-        huawei {
+        HuaWei {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "HuaWei"]
         }
-        xiaomi {
+        XiaoMi {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "XiaoMi"]
         }
     }
