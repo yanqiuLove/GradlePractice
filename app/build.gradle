@@ -49,10 +49,10 @@ android {
     //渠道Flavors
     productFlavors {
         huawei {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "huawei"]
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "HuaWei"]
         }
         xiaomi {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "xiaomi"]
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "XiaoMi"]
         }
     }
     //修改生成的apk名字及输出文件夹
