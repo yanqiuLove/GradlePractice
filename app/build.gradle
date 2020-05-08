@@ -1,12 +1,6 @@
 apply plugin: 'com.android.application'
 
-def getDate() {
-    def date = new Date()
-    def formattedDate = date.format('yyyy-MM-dd-HH-mm')
-    return formattedDate
-}
 
-def verCode = 14
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -14,78 +8,24 @@ android {
         applicationId "com.example.gradlepractice"
         minSdkVersion 15
         targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        multiDexEnabled true
-        versionCode verCode
-        versionName APP_VERSION
-        flavorDimensions "default"
-    }
-
-    signingConfigs {
-        signingConfig {
-            //由于本地打包使用的是本机上的KeyStore
-            //而Jenkins打包用的是服务器上的KeyStore
-            //两个路径不一样
-            if ("true".equals(IS_JENKINS)) {
-                storeFile file("服务器上KeyStore的路径")
-            } else {
-                storeFile file(STORE_FILE_PATH)
-            }
-//            keyAlias KEY_ALIAS
-//            keyPassword KEY_PASSWORD
-            //  storePassword STORE_FILE_PASSWORD
-        }
     }
     buildTypes {
         release {
-            minifyEnabled true
-            zipAlignEnabled true
-            shrinkResources true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
-        debug {}
     }
 
-//    //渠道Flavors
-//    productFlavors {
-//        HuaWei {
-//            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "HuaWei"]
-//        }
-//        XiaoMi {
-//            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "XiaoMi"]
-//        }
-//    }
-    //修改生成的apk名字及输出文件夹
-    applicationVariants.all { variant ->
-        variant.outputs.all { output ->
-            //新名字
-            def newName
-            //时间戳
-            def timeNow
-            //输出文件夹
-            def outDirectory
-            //是否为Jenkins打包，输出路径不同
-            if ("true".equals(IS_JENKINS)) {
-                //Jenkins打包输出到服务器路径
-                timeNow = BUILD_TIME
-                //BUILD_PATH为服务器输出路径
-                outDirectory = output.outputFile.getParent()
-                //AutoBuildTest-v1.0.1-xiaomi-release.apk
-                newName = 'AutoBuildTest-v' + APP_VERSION + '-' + timeNow + '-' + variant.buildType.name + '.apk'
-            } else {
-                //本机打包输出在本机路径
-                timeNow = getDate()
-                outDirectory = output.outputFile.getParent()
-                if ('debug'.equals(variant.buildType.name)) {
-                    newName = "AutoBuildTest-v${APP_VERSION}-debug.apk"
-                } else {
-                    //AutoBuildTest-v1.0.1-xiaomi-release.apk
-                    newName = 'AutoBuildTest-v' + APP_VERSION + '-' + timeNow + '-' + variant.buildType.name + '.apk'
-                }
-            }
-            outputFileName = newName
-        }
-    }
+
+}
+
+apply plugin: 'com.gggengxin.gradletest'
+personPersion{
+    name 'atom'
+    age 18
 }
 
 dependencies {
@@ -95,4 +35,9 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    implementation 'com.android.tools.build:gradle:3.5.2'
 }
+
+
+
+

@@ -1,0 +1,32 @@
+apply plugin: 'groovy'
+apply plugin: 'maven'
+
+
+dependencies {
+    //gradle sdk
+    compile gradleApi()
+    //groovy sdk
+    compile localGroovy()
+//    implementation 'com.google.gradle:osdetector-gradle-plugin:1.6.0'
+    compileOnly 'com.android.tools.build:gradle:3.5.2'
+
+}
+
+uploadArchives{
+    repositories.mavenDeployer{
+        repository(url: uri('../repo'))
+        pom.groupId='com.gx.plugin'
+        pom.artifactId='gradleplugin'
+        pom.version='1.0.2'
+
+    }
+}
+
+
+
+
+repositories {
+    jcenter()
+}
+
+

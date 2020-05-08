@@ -5,12 +5,18 @@ buildscript {
     repositories {
         google()
         jcenter()
+        maven {
+            /// 引入本地仓库地址
+            url uri("$rootDir/repo")
+        }
         
     }
     //gradle执行需要哪些依赖
     //比如：Android Gradle Plugin 插件为我们打包 apk 包，就需要添加classpath 'com.android.tools.build:gradle:3.4.0'
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.2'
+        //依赖自定的插件
+       classpath 'com.gx.plugin:gradleplugin:1.0.1'
         
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
