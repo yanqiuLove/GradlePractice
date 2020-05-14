@@ -19,14 +19,21 @@ android {
         }
     }
 
+        sourceSets{
+        main{
+            jniLibs.srcDir 'libs'
+            jni.srcDirs = []    //disable automatic ndk-build
+        }
+    }
+
 
 }
 
-apply plugin: 'com.gggengxin.gradletest'
-personPersion{
-    name 'atom'
-    age 18
-}
+//apply plugin: 'com.gggengxin.gradletest'
+//personPersion{
+//    name 'atom'
+//    age 18
+//}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
